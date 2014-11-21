@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form
+    input#name(type="text", name="name", placeholder="Last, First I.")
+    br
+    select#gender
+      option Male
+      option Female
+    br
+    input#rank(type="text", name="rank", placeholder="Rank")
+    br
+    input#height(type="text", name="height", placeholder="Height")
+    br
+    input#weight(type="number", name="weight", placeholder="Weight")
+    br
+    input#age(type="number", name="age", placeholder="Age")
+    br
+
+    button#submit(type="button") Check
+    br
+
+    div#passfail Pass/Fail
+    br
+
+    div#neckblock
+      div Neck measurements
+      input.neck(placeholder="inches", data-measure="1")
+      input.neck(placeholder="inches", data-measure="2")
+      input.neck(placeholder="inches", data-measure="3")
+      br
+
+    div#waistblock
+      div Waist measurements
+      input.waist(placeholder="inches", data-measure="1")
+      input.waist(placeholder="inches", data-measure="2")
+      input.waist(placeholder="inches", data-measure="3")
+      br
+
+    div#hipsblock
+      div Hips measurements
+      input.hips(placeholder="inches", data-measure="1")
+      input.hips(placeholder="inches", data-measure="2")
+      input.hips(placeholder="inches", data-measure="3")
+      br
+
+    div#taperesult(type="text", placeholder="Pass/Fail")
+
+    button#tape(type="button") Tape!
+    br
+    div#taperesult Tape Results
+
