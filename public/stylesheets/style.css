@@ -29,15 +29,19 @@ h1 {
   font-weight: 300;
 }
 
+header {
+  background:  url('/images/acu.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
 .header {
   -webkit-transition: 6s;
   -moz-transition: 6s;
   -o-transition: 6s;
   transition: 6s;
   padding: 100px 0 65px;
-  background:  url('/images/acu.jpg') rgba(202, 193, 205, 0.50);
-  background-size: 100%;
-  background-repeat: no-repeat;
+  background-color: rgba(22, 53, 41, 0.81);
  }
 
 .container {
@@ -101,13 +105,13 @@ select {
   height: 42px
 }
 
-#firstname {
+#firstName {
   width: 275px
 }
-#middlename {
+#middleInitial {
   width: 40px
 }
-#lastname {
+#lastName {
   width: 337px
 }
 .personalData {
@@ -125,6 +129,17 @@ select {
   width: 158px
 }
 
+#age:after {
+  content: 'y/o';
+}
+#height:after {
+  content: 'inches';
+}
+#weight:after {
+  content: 'lbs';
+}
+
+
 #neckblock, #waistblock, #hipsblock, #buttonblock {
   /*display: none;*/
 }
@@ -134,4 +149,24 @@ select {
 
 .err {
   border: 1px red solid;
+}
+
+button {
+  width: 80px;
+  height: 42px;
+  border: darkgreen solid 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: whitesmoke;
+  font-size: 18px;
+}
+.bgGreen {
+  background: #a5e09f; /* Old browsers */
+  background: -moz-linear-gradient(top,  #a5e09f 0%, #50b749 50%, #008000 51%, #004000 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5e09f), color-stop(50%,#50b749), color-stop(51%,#008000), color-stop(100%,#004000)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #a5e09f 0%,#50b749 50%,#008000 51%,#004000 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #a5e09f 0%,#50b749 50%,#008000 51%,#004000 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #a5e09f 0%,#50b749 50%,#008000 51%,#004000 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #a5e09f 0%,#50b749 50%,#008000 51%,#004000 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a5e09f', endColorstr='#004000',GradientType=0 ); /* IE6-9 */
 }

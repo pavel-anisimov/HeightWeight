@@ -110,8 +110,10 @@ var BF = {
 
 
 $(function() {
-    var height, weight, age, gender, rank, name, message = "", neckAGV, waistAVG, hipsAVG, circumference, bodyfat,
-        $name = $("#name"),
+    var height, weight, age, gender, rank, name, message = "", neckAGV, waistAVG, hipsAVG, circumference, bodyFat,
+        $firstName = $("#firstName"),
+        $mi = $("#middleInitial"),
+        $lastName = $("#lastName"),
         $rank = $("#rank"),
         $height = $("#height"),
         $weight = $("#weight"),
@@ -152,24 +154,31 @@ $(function() {
         return parseFloat( (Math.floor(parseFloat(val) * 2) / 2).toFixed(1) );
     }
 
-    $("#submit").click(function(){
-        name   = $name.val();
+    $("#submit").on('click', function(){
+        name   = $lastName.val() + ', ' + $firstName.val() + ' ' + $mi.val() + '.';
         rank   = $rank.val();
         height = $height.val();
         age    = $age.val();
         gender = $gender.val();
         weight = $weight.val();
 
-        if (HW[gender][height][AgeTransfer(age)] < parseInt(weight, 10) )
+        (function(){
+            console.log('test the chain function: ', 1);
+        })();
+
+
+
+        if (HW[gender][height][AgeTransfer(age)] < parseInt(weight, 10) ) {
             message = rank + " " + name + " does not meet the standard and needs to be taped";
-        else
+        } else {
             message = rank + " " + name + " meets height and weight standards";
+        }
 
         $passfail.text(message);
     });
 
 
-    $("#tape").click(function(){
+    $("#tape").on('click', function(){
 
 
         neckAGV  = (RoundDown($neck1.val())  + RoundDown($neck2.val())  + RoundDown($neck3.val()) ) / 3; // console.log("neckAGV: ", neckAGV);
@@ -180,7 +189,7 @@ $(function() {
 
         console.log(height, BF[gender][circumference]);
         console.log(gender, BF[gender][circumference][height]);
-        bodyfat = BF[gender][circumference][height];
+        bodyFat = BF[gender][circumference][height];
 
         $passfail.text(bodyfat);
     });

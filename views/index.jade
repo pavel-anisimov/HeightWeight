@@ -6,11 +6,11 @@ block content
 
   form
     .personalData
-      input#firstname(type="text", name="first_name", placeholder="First Name")
+      input#firstName(type="text", name="firstName", placeholder="First Name")
 
-      input#middlename(type="text", name="middle_name", placeholder="MI")
+      input#middleInitial(type="text", name="middleInitial", placeholder="MI")
       br
-      input#lastname(type="text", name="last_name", placeholder="Last Name")
+      input#lastName(type="text", name="lastName", placeholder="Last Name")
       br
       select#rank(name="rank")
         optgroup(label="Junior Enlisted")
@@ -60,7 +60,7 @@ block content
       input#age(type="number", name="age", placeholder="Age (years)")
       br
 
-      button#submit(type="button") Check
+      button#submit.bgGreen(type="button") Check
       br
 
       div#passfail Pass/Fail
@@ -91,7 +91,7 @@ block content
       #buttonblock
         #taperesult(type="text", placeholder="Pass/Fail")
 
-        button#tape(type="button") Tape!
+        button#tape.bgGreen(type="button") Tape!
         br
         #taperesult Tape Results
 
