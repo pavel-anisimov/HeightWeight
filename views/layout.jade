@@ -3,9 +3,20 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src="/javascripts/jquery.js")
-    script(src="/javascripts/hw.js")
+
 
 
   body
-    block content
+    .default-page
+      header.header
+        h1#main-title.container.clearfix Height and Weight Calculator
+        h3.container IAW AR 600-9 The Army Body Composition Program
+          code (as of Jun 2013)
+
+      .main.container
+        block content
+
+      footer.footer
+
+      script(src="/javascripts/jquery.js")
+      script(src="/javascripts/hw.js")

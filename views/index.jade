@@ -5,51 +5,93 @@ block content
   p Welcome to #{title}
 
   form
-    input#name(type="text", name="name", placeholder="Last, First I.")
-    br
-    select#gender
-      option Male
-      option Female
-    br
-    input#rank(type="text", name="rank", placeholder="Rank")
-    br
-    input#height(type="text", name="height", placeholder="Height")
-    br
-    input#weight(type="number", name="weight", placeholder="Weight")
-    br
-    input#age(type="number", name="age", placeholder="Age")
+    .personalData
+      input#firstname(type="text", name="first_name", placeholder="First Name")
+
+      input#middlename(type="text", name="middle_name", placeholder="MI")
+      br
+      input#lastname(type="text", name="last_name", placeholder="Last Name")
+      br
+      select#rank(name="rank")
+        optgroup(label="Junior Enlisted")
+          option(value='PV1') Private (E1)
+          option(value='PV2') Private (E2)
+          option(value='PFC') Private First Class (E3)
+          option(value='SPC') Specialist (E4)
+        optgroup(label="Non-Commissioned Officers")
+          option(value='CPL') Corporal (E4)
+          option(value='SGT') Sergeant (E5)
+          option(value='SSG') Staff Sergeant (E6)
+          option(value='SFC') Sergeant First Class (E7)
+          option(value='MSG') Masger Sergeant (E8)
+          option(value='1SG') First Sergeant (E8)
+          option(value='SGM') Sergeant Major (E9)
+          option(value='CSM') Command Sergeant Major (E9)
+          option(value='SMA') Sergeant Major of the Army (E9)
+        optgroup(label="Warrant Officers")
+          option(value='WO1') Warrant Officer 1 (WO1)
+          option(value='CW2') Chief Warrant Officer 2 (WO2)
+          option(value='CW3') Chief Warrant Officer 3 (WO3)
+          option(value='CW4') Chief Warrant Officer 4 (WO4)
+          option(value='CW5') Chief Warrant Officer 5 (WO5)
+        optgroup(label="Commissioned Officers")
+          option(value='2LT') Second Lieutenant (O1)
+          option(value='1LT') First Lieutenant (O2)
+          option(value='CPT') Captain (O3)
+          option(value='MAJ') Major (O4)
+          option(value='LTC') Lieutenant Colonel (O5)
+          option(value='COL') Colonel (O6)
+          option(value='BG') Brigade General (O7)
+          option(value='MG') Major General (O8)
+          option(value='LTG') Lieutenant General (O9)
+          option(value='GEN') General (O10)
     br
 
-    button#submit(type="button") Check
-    br
+    .hwMeasure
+      select#gender
+        option Gender
+        option Male
+        option Female
 
-    div#passfail Pass/Fail
-    br
+      input#height(type="number", name="height", placeholder="Height (inches)")
+      br
+      input#weight(type="number", name="weight", placeholder="Weight (lbs)")
 
-    div#neckblock
-      div Neck measurements
-      input.neck(placeholder="inches", data-measure="1")
-      input.neck(placeholder="inches", data-measure="2")
-      input.neck(placeholder="inches", data-measure="3")
+      input#age(type="number", name="age", placeholder="Age (years)")
       br
 
-    div#waistblock
-      div Waist measurements
-      input.waist(placeholder="inches", data-measure="1")
-      input.waist(placeholder="inches", data-measure="2")
-      input.waist(placeholder="inches", data-measure="3")
+      button#submit(type="button") Check
       br
 
-    div#hipsblock
-      div Hips measurements
-      input.hips(placeholder="inches", data-measure="1")
-      input.hips(placeholder="inches", data-measure="2")
-      input.hips(placeholder="inches", data-measure="3")
+      div#passfail Pass/Fail
       br
 
-    div#taperesult(type="text", placeholder="Pass/Fail")
+    .bfMeasure
+      #neckblock
+        div Neck measurements
+        input.neck(placeholder="inches", data-measure="1")
+        input.neck(placeholder="inches", data-measure="2")
+        input.neck(placeholder="inches", data-measure="3")
+        br
 
-    button#tape(type="button") Tape!
-    br
-    div#taperesult Tape Results
+      #waistblock
+        div Waist measurements
+        input.waist(placeholder="inches", data-measure="1")
+        input.waist(placeholder="inches", data-measure="2")
+        input.waist(placeholder="inches", data-measure="3")
+        br
+
+      #hipsblock
+        div Hips measurements
+        input.hips(placeholder="inches", data-measure="1")
+        input.hips(placeholder="inches", data-measure="2")
+        input.hips(placeholder="inches", data-measure="3")
+        br
+
+      #buttonblock
+        #taperesult(type="text", placeholder="Pass/Fail")
+
+        button#tape(type="button") Tape!
+        br
+        #taperesult Tape Results
 
