@@ -110,28 +110,75 @@ var BF = {
 
 
 $(function() {
-    var height, weight, age, gender, rank, name, message = "", neckAGV, waistAVG, hipsAVG, circumference, bodyFat,
+    "use strict";
+
+    var message = "", hwDataFlag = false,
         $firstName = $("#firstName"),
-        $mi = $("#middleInitial"),
-        $lastName = $("#lastName"),
-        $rank = $("#rank"),
-        $height = $("#height"),
-        $weight = $("#weight"),
-        $age = $("#age"),
-        $gender = $("#gender"),
-        $passfail = $("#passfail"),
-        $tape = $('#taperesult'),
-        $neck1 = $(".neck[data-measure='1']"),
-        $neck2 = $(".neck[data-measure='2']"),
-        $neck3 = $(".neck[data-measure='3']"),
-        $waist1 = $(".waist[data-measure='1']"),
-        $waist2 = $(".waist[data-measure='2']"),
-        $waist3 = $(".waist[data-measure='3']"),
-        $hips1 = $(".hips[data-measure='1']"),
-        $hips2 = $(".hips[data-measure='2']"),
-        $hips3 = $(".hips[data-measure='3']");
+        $mi        = $("#middleInitial"),
+        $lastName  = $("#lastName"),
+        $names     = $('.names'),
+        $measures  = $('.measures'),
+        $rank      = $("#rank"),
+        $height    = $("#height"),
+        $weight    = $("#weight"),
+        $age       = $("#age"),
+        $gender    = $("#gender"),
+        $passfail  = $("#passfail"),
+        $tape      = $('#taperesult'),
+        $bfBlock   = $('.bfBlock'),
+        $neck1     = $(".neck[data-measure='1']"),
+        $neck2     = $(".neck[data-measure='2']"),
+        $neck3     = $(".neck[data-measure='3']"),
+        $waist1    = $(".waist[data-measure='1']"),
+        $waist2    = $(".waist[data-measure='2']"),
+        $waist3    = $(".waist[data-measure='3']"),
+        $hips1     = $(".hips[data-measure='1']"),
+        $hips2     = $(".hips[data-measure='2']"),
+        $hips3     = $(".hips[data-measure='3']"),
+        height, weight, age, gender, rank, name, neckAGV, waistAVG, hipsAVG, circumference, bodyFat;
 
+    /**
+     * Check if name is a name
+     * @param str
+     * @returns {boolean}
+     */
+    function nameOk(str) {
+        return /^[a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*$/.test(str);
+    }
 
+    /**
+     * Capitalizing first letter of the String
+     * @param val
+     * @returns {string}
+     */
+    function capitaliseFirstLetter(val)
+    {
+        return val.charAt(0).toUpperCase() + val.slice(1);
+    }
+
+    /**
+     * Toggle the error flag on the input box
+     * @param $obj
+     * @param params
+     */
+    function errorToggle($obj, params) {
+
+        if(params.condition){
+            $obj.addClass('err');
+        } else {
+            $obj.removeClass('err').val(
+                capitaliseFirstLetter(('' + params.val).trim())
+            );
+        }
+        console.log(params, 'test');
+    }
+
+    /**
+     * Transform age for better lookup through the json string
+     * @param age
+     * @returns {string}
+     * @constructor
+     */
     function AgeTransfer(age) {
         age = parseInt(age, 10);
 
@@ -149,16 +196,47 @@ $(function() {
             return "error";
     }
 
+    /**
+     * Round down to the nearest point
+     * @param val
+     * @returns {Number}
+     * @constructor
+     */
     function RoundDown(val){
-        //console.log((Math.floor(parseFloat(val) * 2) / 2).toFixed(1));
         return parseFloat( (Math.floor(parseFloat(val) * 2) / 2).toFixed(1) );
     }
+
+    $names.on('change', function(){
+        var $this = $(this),
+            val   = $this.val();
+        errorToggle($this, {
+            condition:!nameOk(val),
+            val:val
+        });
+    });
+
+    //only numeric data can be entered for numeric blocks
+    $measures.on('keypress', function(evt){
+        if(evt.charCode < 48 || evt.charCode > 57) {
+            evt.preventDefault();
+        }
+    });
+
+    $measures.on('change', function(){
+        var $this = $(this),
+            val   = parseInt($this.val(), 10);
+
+        errorToggle($this, {
+            condition: (isNaN(val) || val < 1) ,
+            val: val
+        });
+    });
 
     $("#submit").on('click', function(){
         name   = $lastName.val() + ', ' + $firstName.val() + ' ' + $mi.val() + '.';
         rank   = $rank.val();
         height = $height.val();
-        age    = $age.val();
+        age    = $age.val(); console.log(age);
         gender = $gender.val();
         weight = $weight.val();
 
@@ -170,12 +248,19 @@ $(function() {
 
         if (HW[gender][height][AgeTransfer(age)] < parseInt(weight, 10) ) {
             message = rank + " " + name + " does not meet the standard and needs to be taped";
+            $bfBlock.fadeIn('slow', function(){
+                $('html, body').animate({
+                    scrollTop: ($passfail.offset().top)
+                },500);
+            });
         } else {
             message = rank + " " + name + " meets height and weight standards";
+
         }
 
         $passfail.text(message);
     });
+
 
 
     $("#tape").on('click', function(){
@@ -191,7 +276,7 @@ $(function() {
         console.log(gender, BF[gender][circumference][height]);
         bodyFat = BF[gender][circumference][height];
 
-        $passfail.text(bodyfat);
+        $passfail.text(bodyFat);
     });
 
 });

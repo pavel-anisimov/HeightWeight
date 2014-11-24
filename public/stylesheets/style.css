@@ -47,6 +47,7 @@ header {
 .container {
   width: 80%;
   max-width: 1200px;
+  min-width: 450px;
   margin: auto;
 }
 
@@ -114,11 +115,23 @@ select {
 #lastName {
   width: 337px
 }
-.personalData {
-  width: 360px
+
+.row {
+  min-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 520px
 }
-#rank {
-  width: 350px
+
+label {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  float:left;
+  display: block;
+  height: 42px;
+  line-height: 42px;
+  font-size: 20px;
+  width: 160px
 }
 
 #gender {
@@ -159,6 +172,7 @@ button {
   cursor: pointer;
   color: whitesmoke;
   font-size: 18px;
+  margin: 5px;
 }
 .bgGreen {
   background: #a5e09f; /* Old browsers */
@@ -169,4 +183,40 @@ button {
   background: -ms-linear-gradient(top,  #a5e09f 0%,#50b749 50%,#008000 51%,#004000 100%); /* IE10+ */
   background: linear-gradient(to bottom,  #a5e09f 0%,#50b749 50%,#008000 51%,#004000 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a5e09f', endColorstr='#004000',GradientType=0 ); /* IE6-9 */
+}
+
+
+
+.hwBlock, .bfBlock {
+  display:block;
+  border: #ccc solid 2px;
+  border-radius: 5px;
+  box-shadow: 0 0 15px #888888;
+  width: 540px;
+  background-color: #fff;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bfBlock, .hwBlock {
+  margin-bottom: 20px;
+}
+
+#neckBlock > div, #waistBlock > div, #hipsBlock > div {
+  height: 48px;
+  line-height: 48px;
+  font-size: 20px;
+  margin: 5px;
+}
+
+#neckBlock > input, #waistBlock > input, #hipsBlock > input {
+  margin: 5px;
+}
+
+#passfail {
+  font-size: 20px;
+  color: red;
+  text-align: center;
+  line-height: 30px;
+  margin: 5px;
 }
