@@ -215,8 +215,29 @@ button {
 
 #passfail {
   font-size: 20px;
-  color: red;
   text-align: center;
   line-height: 30px;
   margin: 5px;
+}
+
+#hwPassFail, #bfPassFail {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  text-align: center;
+}
+
+.passGreen {
+  border: 1px solid #004000;
+  box-shadow: 0 0 5px #004000;
+  background-color: green;
+}
+.failRed {
+  border: 1px solid #800000;
+  background-color: red;
+  box-shadow: 0 0 5px #800000;
 }

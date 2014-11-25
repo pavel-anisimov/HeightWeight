@@ -2,6 +2,13 @@
  * Created by pavel on 8/6/14.
  */
 
+
+
+var Standard = {
+    "Male":   {"17": 20, "21": 22, "28": 24, "40":26},
+    "Female": {"17": 30, "21": 32, "28": 34, "40":36}
+};
+
 var HW = {
     "Male": {
         "60": {"min": 97,  "17": 132, "21": 136, "28": 139, "40": 141},
@@ -112,29 +119,32 @@ var BF = {
 $(function() {
     "use strict";
 
-    var message = "", hwDataFlag = false,
-        $firstName = $("#firstName"),
-        $mi        = $("#middleInitial"),
-        $lastName  = $("#lastName"),
-        $names     = $('.names'),
-        $measures  = $('.measures'),
-        $rank      = $("#rank"),
-        $height    = $("#height"),
-        $weight    = $("#weight"),
-        $age       = $("#age"),
-        $gender    = $("#gender"),
-        $passfail  = $("#passfail"),
-        $tape      = $('#taperesult'),
-        $bfBlock   = $('.bfBlock'),
-        $neck1     = $(".neck[data-measure='1']"),
-        $neck2     = $(".neck[data-measure='2']"),
-        $neck3     = $(".neck[data-measure='3']"),
-        $waist1    = $(".waist[data-measure='1']"),
-        $waist2    = $(".waist[data-measure='2']"),
-        $waist3    = $(".waist[data-measure='3']"),
-        $hips1     = $(".hips[data-measure='1']"),
-        $hips2     = $(".hips[data-measure='2']"),
-        $hips3     = $(".hips[data-measure='3']"),
+    var message = '', hwDataFlag = false,
+        colorMsg    = 'passGreen',
+        $firstName  = $('#firstName'),
+        $mi         = $('#middleInitial'),
+        $lastName   = $('#lastName'),
+        $names      = $('.names'),
+        $measures   = $('.measures'),
+        $rank       = $('#rank'),
+        $height     = $('#height'),
+        $weight     = $('#weight'),
+        $hipsBlock  = $('#hipsBlock'),
+        $age        = $('#age'),
+        $gender     = $('#gender'),
+        $bfPassFail = $('#bfPassFail'),
+        $hwPassFail = $('#hwPassFail'),
+        $tape       = $('#taperesult'),
+        $bfBlock    = $('.bfBlock'),
+        $neck1      = $(".neck[data-measure='1']"),
+        $neck2      = $(".neck[data-measure='2']"),
+        $neck3      = $(".neck[data-measure='3']"),
+        $waist1     = $(".waist[data-measure='1']"),
+        $waist2     = $(".waist[data-measure='2']"),
+        $waist3     = $(".waist[data-measure='3']"),
+        $hips1      = $(".hips[data-measure='1']"),
+        $hips2      = $(".hips[data-measure='2']"),
+        $hips3      = $(".hips[data-measure='3']"),
         height, weight, age, gender, rank, name, neckAGV, waistAVG, hipsAVG, circumference, bodyFat;
 
     /**
@@ -144,6 +154,10 @@ $(function() {
      */
     function nameOk(str) {
         return /^[a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*$/.test(str);
+    }
+
+    function updateMessage(color, obj, msg) {
+        $('#'+obj).removeClass('passGreen failRed').addClass(color).text(msg);
     }
 
     /**
@@ -233,6 +247,7 @@ $(function() {
     });
 
     $("#submit").on('click', function(){
+
         name   = $lastName.val() + ', ' + $firstName.val() + ' ' + $mi.val() + '.';
         rank   = $rank.val();
         height = $height.val();
@@ -247,24 +262,33 @@ $(function() {
 
 
         if (HW[gender][height][AgeTransfer(age)] < parseInt(weight, 10) ) {
+            colorMsg = 'failRed';
             message = rank + " " + name + " does not meet the standard and needs to be taped";
             $bfBlock.fadeIn('slow', function(){
+                if(gender === 'Male') {
+                    $hipsBlock.hide();
+                } else {
+                    $hipsBlock.show();
+                }
+
                 $('html, body').animate({
-                    scrollTop: ($passfail.offset().top)
+                    scrollTop: ($hwPassFail.offset().top)
                 },500);
             });
         } else {
-            message = rank + " " + name + " meets height and weight standards";
-
+            colorMsg = 'passGreen';
+            message = rank + ' ' + name + ' meets height and weight standards and does not require to be taped.';
+            $bfBlock.fadeOut('slow');
         }
 
-        $passfail.text(message);
+        updateMessage(colorMsg, 'hwPassFail', message);
     });
 
 
 
     $("#tape").on('click', function(){
-
+        var bfStandard = Standard[gender][AgeTransfer(age)],
+            bfMessage  = '';
 
         neckAGV  = (RoundDown($neck1.val())  + RoundDown($neck2.val())  + RoundDown($neck3.val()) ) / 3; // console.log("neckAGV: ", neckAGV);
         waistAVG = (RoundDown($waist1.val()) + RoundDown($waist2.val()) + RoundDown($waist3.val())) / 3; // console.log("waistAVG: ", waistAVG);
@@ -272,11 +296,26 @@ $(function() {
 
         circumference = (RoundDown(waistAVG) - RoundDown(neckAGV)) + '';
 
-        console.log(height, BF[gender][circumference]);
-        console.log(gender, BF[gender][circumference][height]);
+        //console.log(height, BF[gender][circumference]);
+        //console.log(gender, BF[gender][circumference][height]);
         bodyFat = BF[gender][circumference][height];
 
-        $passfail.text(bodyFat);
+        console.log('Body Fat: ', bodyFat);
+        console.log('Current Standard: ', bfStandard);
+
+        if(bodyFat <= bfStandard) {
+            message = rank + ' ' + name + ' meets the army body fat standards.';
+            colorMsg = 'passGreen';
+        }
+        else {
+            message = rank + ' ' + name + ' does not meets the army body fat standards. '
+            + (gender === 'Male' ? 'His' : 'Her') + ' body fat level is above the standard by '
+            + (bodyFat - bfStandard) + '%.' ;
+            colorMsg = 'failRed';
+        }
+
+        updateMessage(colorMsg, 'bfPassFail', message);
+
     });
 
 });
