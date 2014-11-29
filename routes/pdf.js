@@ -28,14 +28,13 @@ router.get('/pdf', function(req, res) {
             }
         },
         remarks:  true == false ? "\n"
-        + '• SPC Smith has passed the height and weight and body fat test.' + "\n\n"
-        + '• According to AR 600-9, Table B-2, SPC Smith is authorized up to ' + 24 + '% of body fat.' + "\n\n"
-        + '• SPC Smith\'s body fat index is ' + 23 + '% with ' + (24 - 23) + '% below the army standard.' + "\n\n"
-
-            : "\n"
-        + '• SPC Smith has NOT passed the height and weight and body fat test.' + "\n\n"
-        + '• According to AR 600-9, Table B-2, SPC Smith is authorized up to ' + 24 + '% of body fat.' + "\n\n"
-        + '• SPC Smith\'s body fat index is ' + 25 + '% with ' + (25 - 24) + '% above the army standard.' + "\n\n",
+                    + '• SPC Smith has passed the height and weight and body fat test.' + "\n\n"
+                    + '• According to AR 600-9, Table B-2, SPC Smith is authorized up to ' + 24 + '% of body fat.' + "\n\n"
+                    + '• SPC Smith\'s body fat index is ' + 23 + '% with ' + (24 - 23) + '% below the army standard.' + "\n\n"
+                    : "\n"
+                    + '• SPC Smith has NOT passed the height and weight and body fat test.' + "\n\n"
+                    + '• According to AR 600-9, Table B-2, SPC Smith is authorized up to ' + 24 + '% of body fat.' + "\n\n"
+                    + '• SPC Smith\'s body fat index is ' + 25 + '% with ' + (25 - 24) + '% above the army standard.' + "\n\n",
 
         comply:   false,
         grader:   {
@@ -58,8 +57,8 @@ router.get('/generate', function(req, res) {
 
     phantom.create(function (ph) {
         ph.createPage(function (page) {
-            page.open("http://www.google.com", function (status) {
-                console.log("opened google? ", status);
+            page.open("http://localhost:3000/pdf", function (status) {
+                console.log("DA FORM 5500? ", status);
                 page.evaluate(function () { return document.title; }, function (result) {
                     console.log('Page title is ' + result);
                     ph.exit();
