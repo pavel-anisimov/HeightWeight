@@ -1,0 +1,189 @@
+doctype html
+html
+  head
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title= title
+    link(rel='stylesheet', href='/stylesheets/pdf.css')
+  body
+    .container
+      .form
+          .letters
+            .tab M
+            .tab TAB
+            .tab TAB
+            .tab TAB
+            .tab TAB
+            .tab TAB
+          .tabs
+            .tab
+            .tab
+            .tab
+            .tab
+            .tab
+            .tab
+
+          .title
+            .formName
+              strong BODY FAT CONTENT WORKSHEET
+              em (Male)
+            .subTitle For use of this form, see AR 600-9; the proponent agency is DCS, G-1
+
+          .piRow
+            .piCol
+              .nameBlock
+                .label NAME (Last, First, Middle Initial)
+                .data(contenteditable='true')= fullName
+              .rankBlock
+                .label RANK
+                .data(contenteditable='true')= rank
+              .heightBlock
+                .label HEIGHT (to nearest 0.50 inch)
+                .data(contenteditable='true')= height + ' inches'
+              .weightBlock
+                .label WEIGHT (to nearest pound)
+                .data(contenteditable='true')= weight + ' lbs'
+              .ageBlock
+                .label AGE
+                .data(contenteditable='true')= age
+            .piNote
+              | NOTE:
+              br
+              br
+              | ½"=.50
+
+          .rows.topRow
+            .stepCol STEP
+            .firstCol FIRST
+            .secondCol SECOND
+            .thirdCol THIRD
+            .averageCol AVERAGE
+              br
+              em (to nearest 0.50 in.)
+          .rows.row1
+            .stepCol
+              .num 1.
+              .text Measure neck just below level of larynx
+                em (Adam's apple.)
+                strong  Round up
+                |  to the nearest 0.50 inch.
+                em Repeat three times, then average to the
+                |  nearest 0.50 inch.
+            .firstCol
+              div(contenteditable='true')= measurements.neck.first
+            .secondCol
+              div(contenteditable='true')= measurements.neck.second
+            .thirdCol
+              div(contenteditable='true')= measurements.neck.third
+            .averageCol
+              div(contenteditable='true')= measurements.neck.average
+
+          .rows.row2
+            .stepCol
+              .num 2.
+              .text  Measure abdomen at the level of the navel
+                em (belly button.)
+                strong  Round up
+                |  to the nearest 0.50 inch.
+                em  Repeat three times, then average to the
+                |  nearest 0.50 inch.
+            .firstCol
+              div(contenteditable='true')= measurements.waist.first
+            .secondCol
+              div(contenteditable='true')= measurements.waist.second
+            .thirdCol
+              div(contenteditable='true')= measurements.waist.third
+            .averageCol
+              div(contenteditable='true')= measurements.waist.average
+
+          .rows.row3
+            .stepCol
+              .num 3.
+              .text  Enter the average neck circumference.
+            .averageCol
+              div(contenteditable='true')= measurements.neck.average
+
+          .rows.row4
+            .stepCol
+              .num 4.
+              .text  Enter the average abdominal circumference.
+            .averageCol
+              div(contenteditable='true')= measurements.waist.average
+
+          .rows.row5
+            .stepCol
+              .num 5.
+              .text  Enter circumference value
+                em (step 4 - step 3).
+            .averageCol
+              div(contenteditable='true')= (+measurements.waist.average - +measurements.neck.average)
+
+          .rows.row6
+            .stepCol
+              .num 6.
+              .text  Enter height in inches to the nearest 0.50 inch.
+            .averageCol
+              div(contenteditable='true')= height
+
+          .rows.row7
+            .stepCol
+              .num 7.
+              .text  Find the Soldier's circumference vale
+                em  (step 5)
+                |  and height
+                em  (step 6)
+                |  in figure B-1
+                em  (Percent Fat Estimation for Men).
+                |  Enter the percent body fat value that intercepts with the circumference value and height.
+                |  This is Soldier's Percent Body Fat.
+
+            .averageCol
+              div(contenteditable='true')= bodyfat
+
+          .rows.remarks
+            .remarksTitle REMARKS
+            .remarksBody(contenteditable='true')= remarks
+          .rows.checkBoxes
+            .rowCheck CHECK ALL THAT APPLY
+            .rowBoxes
+              .comply
+                input#complied.radio(type="radio" name='comply' value="complied" checked=true==comply)
+                label(for='complied') Individual is in compliance with Army standards.
+              .notComply
+                input#notComplied.radio(type="radio" name='comply' value="notComplied" checked=false==comply)
+                label(for='notComplied')
+                  span Is not in compliance with the standards.
+                  br
+                  span.suggestion Recommended monthly weight loss is 3-8 lbs or 1% body fat.
+
+          .rows.signatures
+            .graderName
+              .title PREPEARED BY
+                em (Signature)
+              .data(contenteditable='true')= grader.name
+            .graderRank
+              .title RANK
+              .data(contenteditable='true')= grader.rank
+            .graderDate
+              .title DATE
+                br
+                em (YYYYMMDD)
+              .data(contenteditable='true')= grader.date
+            .superName
+              .title APPROVED BY SUPERVISOR
+                br
+                em (Printed Name and Signature)
+              .data(contenteditable='true')= supervisor.name
+            .superRank
+              .title RANK
+              .data(contenteditable='true')= supervisor.rank
+            .superDate
+              .title DATE
+                br
+                em (YYYYMMDD)
+              .data(contenteditable='true')= supervisor.date
+
+          .rows.footer
+            .formName= title + ', MAY 2013'
+            .remind   PREVIOUS EDITIONS ARE OBSOLETE.
+            .legal    APD LC v1.00ES
+

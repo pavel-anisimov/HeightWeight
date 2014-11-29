@@ -1,0 +1,459 @@
+body {
+    background-color: #c6c9ab;
+    font-size: 10px;
+}
+.container{
+    margin: 1.25em auto;
+    background-color: #ffffff;
+    width: 66em;
+    height: 91em;
+    font-family: sans-serif;
+}
+.form {
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 64em;
+    height: 87em;
+}
+
+div {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+div[contenteditable='true']{
+    font-family: Times, "Times New Roman", Georgia, serif;
+    background-color: rgba(177, 238, 247, 0.50);
+}
+
+div:focus {
+    background-color: rgba(0, 64, 88, 0.46);
+    color: #fffbfd;
+}
+
+
+.letters {
+    width: 100%;
+    text-align: left;
+    white-space: nowrap;
+    font-weight: bold;
+    height: 0.75em;
+}
+.letters > .tab {
+    display: inline-block;
+    width: 14.45%
+}
+
+.letters > .tab:first-of-type {
+    width: 13.5%
+}
+
+.letters > .tab:nth-of-type(2) {
+    width: 30.5%
+}
+
+
+
+.tabs {
+    width: 100%;
+    height: 1em;
+    border-bottom: 2px solid black;
+    white-space: nowrap;
+}
+
+.tabs > .tab {
+    display: inline-block;
+    height: 0.6em;
+    border-left: 2px black solid;
+    width: 14%
+}
+.tabs > .tab {
+    margin-left: 0.3em;
+}
+
+.tab:nth-of-type(2) {
+    width: 30%;
+}
+
+.title > div {
+    width: 100%;
+    text-align: center;
+    display: block;
+    color: black;
+
+}
+.title > .formName {
+    padding-top: 1.2em;
+    font-size: 120%;
+}
+
+.subTitle {
+    padding-bottom: 2em;
+    font-size: 100%;
+    border-bottom: 2px black solid;
+}
+
+
+.piRow {
+    height: 6em;
+    border-bottom: 1px solid black;
+
+}
+
+.rows, .piRow  {
+    font-size: 100%;
+    width: 100%;
+}
+
+
+.rows > div {
+    display: inline-block;
+}
+
+
+.rows.row1, .rows.row2, .rows.row3, .rows.row4, .rows.row5, .rows.row6, .rows.row7 {
+   /* font-size: 90%; */
+}
+
+    /* CALCULATIONS IN THE MIDDLE OF THE FORM */
+.rows.topRow,
+.rows.row1,
+.rows.row2 {
+    width: 100%;
+ }
+
+.rows.topRow > .stepCol,
+.rows.row1 > .stepCol,
+.rows.row2 > .stepCol {
+    width: 40%;
+    display: inline-block;
+}
+
+
+.rows.topRow > div {
+    text-align: center;
+    height: 2.5em;
+}
+
+.rows.topRow > .stepCol,
+.rows.row1 > .stepCol,
+.rows.row2 > .stepCol {
+    border-bottom: 1px solid black;
+    float: left;
+}
+
+.rows.row1 > .stepCol,
+.rows.row2 > .stepCol {
+    height: 5em;
+}
+
+.rows.topRow > .stepCol, .rows.topRow > .firstCol, .rows.topRow > .secondCol, .rows.topRow > .thirdCol {
+    float: left;
+    line-height: 2.5em;
+}
+
+.rows.topRow > .averageCol {
+    padding-top: 0.3em;
+}
+
+.averageCol > em {
+    font-size: 80%;
+}
+
+.rows.topRow > .firstCol, .rows.topRow > .secondCol, .rows.topRow > .thirdCol, .rows.topRow > .averageCol {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.rows.row1 > .firstCol, .rows.row1 > .secondCol, .rows.row1 > .thirdCol,
+.rows.row2 > .firstCol, .rows.row2 > .secondCol, .rows.row2 > .thirdCol{
+    line-height: 5em;
+    height: 5em;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    float: left;
+}
+.rows.row1 div[contenteditable="true"],
+.rows.row2 div[contenteditable="true"],
+.rows.row3 div[contenteditable="true"],
+.rows.row4 div[contenteditable="true"],
+.rows.row5 div[contenteditable="true"],
+.rows.row6 div[contenteditable="true"],
+.rows.row7 div[contenteditable="true"]{
+    margin: 1.5em 0.5em;
+    height: 2em;
+    line-height: 2em;
+}
+
+ .rows.row1 > .averageCol, .rows.row2 > .averageCol{
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    line-height: 5em;
+    height: 5em;
+    float: right;
+}
+
+ .firstCol, .secondCol, .thirdCol, .averageCol {
+    height: 100%;
+    text-align: center;
+    line-height: 100%;
+    display: inline-block;
+    width: 15%;
+}
+
+.stepCol > .num {
+    text-align: center;
+    display: inline-block;
+    width: 2.5em;
+    float: left
+}
+.stepCol > .text {
+    display: inline-block;
+    width: 80%;
+    width: calc(100% - 5em);
+}
+
+/* BLOCKS 3-7 IN THE MIDDLE OF THE FORM */
+
+.row3 > div, .row4 > div, .row5 > div, .row6 > div, .row7 > div {
+    display: inline-block;
+}
+
+.row3 > .stepCol, .row4 > .stepCol, .row5 > .stepCol, .row6 > .stepCol, .row7 > .stepCol {
+    width: 85%;
+    height: 5em;
+
+}
+
+.row3 > .averageCol, .row4 > .averageCol, .row5 > .averageCol, .row6 > .averageCol, .row7 > .averageCol {
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    line-height: 5em;
+    height: 5em;
+    width: 15%;
+    float: right;
+}
+
+
+
+.row3 > .stepCol, .row4 > .stepCol, .row5 > .stepCol, .row6 > .stepCol {
+    line-height: 5em;
+     border-bottom: 1px solid black;
+}
+
+.row7 > .stepCol {
+    padding-top: 0.5em;
+    border-bottom: 1px solid black;
+}
+.row7 > .averageCol {
+    float: right;
+}
+
+
+/* REMARKS IN THE MIDDLE OF THE FORM */
+.rows.remarks {
+    height: 32%;
+    border-bottom: 2px solid black;
+}
+
+.rows.remarks > .remarksTitle {
+    width: 100%;
+    margin: 5px 10px 0 10px;
+    height: 2em
+}
+
+.rows.remarks > .remarksBody {
+    width: 90%;
+    width: calc(100% - 20px);
+    margin: 5px 10px 0 10px;
+    height: 300px;
+    height: calc(100% - 4em);
+    white-space: pre;
+
+}
+
+
+/* CHECK BOXES AT THE BOTTOM OF THE FORM */
+.rows.checkBoxes {
+    border-bottom: 1px solid black;
+    padding-bottom: 0.5em;
+}
+.rows.checkBoxes > .rowCheck,
+.rows.checkBoxes > .rowBoxes  {
+    width: 100%
+}
+.rows.checkBoxes > .rowCheck {
+    padding-left: 1em;
+}
+.rowBoxes > .comply,
+.rowBoxes > .notComply{
+    display: inline-block;
+    padding-left: 5px;
+    float: left;
+}
+.rowBoxes > .comply {
+    width: 42%
+}
+.rowBoxes > .notComply {
+    width: 58%
+}
+
+input[type='radio'] {
+    background-image:url(http://csscheckbox.com/checkboxes/lite-x-gray.png);
+    margin-right: 1em;
+}
+.radio {
+
+}
+
+
+.notComply span.suggestion {
+    padding-left: 1.5em;
+}
+
+
+.rows.signatures > div {
+   /* float: left; */
+}
+
+.rows.signatures > .graderName {
+    width: 22%;
+}
+.rows.signatures > .graderRank {
+    width: 10%;
+}
+.rows.signatures > .graderDate{
+    width: 13%;
+}
+.rows.signatures > .superName {
+    width: 30%;
+}
+.rows.signatures > .superRank {
+    width: 10%;
+}
+.rows.signatures > .superDate {
+    width: 15%;
+}
+
+.rows.signatures .title {
+    height: 3em;
+    float: left;
+}
+.rows.signatures .data {
+    font-size: 120%;
+    height: 1.5em;
+    float: left;
+    width: 90%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.rows.footer {
+    border-top: 2px solid black;
+
+}
+
+.rows.footer > .formName {
+    width: 44%;
+    width: calc(45% - 0.7em);
+    font-weight: bold;
+}
+
+.rows.footer > .remind {
+    width: 40%;
+}
+
+.rows.footer > .legal {
+    width: 15%;
+    font-size: 80%;
+    text-align: right;
+    padding-right: 10px;
+}
+
+
+.piCol .data {
+    text-align: center;
+    font-size: 120%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin: 0 10px 0 10px;
+}
+.nameBlock > .data {
+    text-align: left;
+
+}
+
+.nameBlock > .label,
+.heightBlock > .label,
+.graderName > .title,
+.graderName > .data,
+.footer > .formName {
+    margin-left: 0.6em;
+}
+
+.piCol {
+    width: 85%;
+    height: 6em;
+    display: inline-block;
+}
+
+.piNote {
+    width: 15%;
+    height: 6em;
+    float: right;
+    display: inline-block;
+    padding-left: 5px;
+    border-left: 1px solid black;
+}
+
+.nameBlock, .rankBlock, .heightBlock, .weightBlock, .ageBlock {
+    display: inline-block;
+    height: 3em;
+}
+
+.nameBlock {
+    width: 66%;
+    border-bottom: 1px solid black;
+}
+.rankBlock {
+    border-bottom: 1px solid black;
+    width: 34%
+}
+.heightBlock {
+    width: 49%
+}
+.weightBlock {
+    width: 32%
+}
+.ageBlock {
+    width: 19%;
+}
+
+@media print {
+    body {
+        background-color: #ffffff;
+    }
+    .container{
+        margin-top: 1em;
+        margin-left: 3em;
+        height: 90em;
+        width: 69em
+    }
+
+    .form {
+        margin-left: 0em;
+        width: 64em;
+    }
+
+    div[contenteditable='true']{
+        font-family: Times, "Times New Roman", Georgia, serif;
+        background-color: inherit;
+    }
+    .rows.remarks {
+        /*height: 24.5%;*/
+    }
+
+
+}
